@@ -9,6 +9,9 @@ public record DadosAgendamentoConsulta(
         Long id,
 
         @NotNull
+        Long idMedico,
+
+        @NotNull
         Long idPaciente,
 
         @NotNull
