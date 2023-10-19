@@ -1,4 +1,4 @@
-package med.voll.api.domain.consulta.validacoes;
+package med.voll.api.domain.consulta.validacoes.agendamento;
 
 import med.voll.api.domain.ValidacaoException;
 import med.voll.api.domain.consulta.DadosAgendamentoConsulta;
@@ -9,13 +9,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class VaildadorMedicoAtivo implements ValidadorAgendamentoDeConsulta {
     @Autowired
-    private MedicoRepository medicoRepository;
+    private MedicoRepository repository;
 
     public void validar(DadosAgendamentoConsulta dados) {
         if (dados.idMedico() == null) {
             return;
         }
-        var medicoAtivo = medicoRepository.findAtivoById(dados.idMedico());
+        var medicoAtivo = repository.findAtivoById(dados.idMedico());
         if (!medicoAtivo) {
             throw new ValidacaoException("Não é permitido marcar consultas com médicos inativos!");
         }
